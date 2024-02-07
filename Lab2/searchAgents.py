@@ -290,8 +290,8 @@ class CornersProblem(search.SearchProblem):
         # in initializing the problem
         "*** YOUR CODE HERE ***"
         self.visitedCorners = {}
-        for corner in self.corners:
-            self.visitedCorners[corner] = False
+        for corner in self.corners: # go through each of the corners and set to false
+            self.visitedCorners[corner] = False # not visited yet
 
     def getStartState(self):
         """
@@ -301,6 +301,7 @@ class CornersProblem(search.SearchProblem):
         "*** YOUR CODE HERE ***"
         # util.raiseNotDefined()
         return (self.startingPosition, self.visitedCorners)
+        # return the starting position and the visited corners boolean
 
 
     def isGoalState(self, state):
@@ -309,8 +310,8 @@ class CornersProblem(search.SearchProblem):
         """
         "*** YOUR CODE HERE ***"
         # util.raiseNotDefined()
-        currPos, currVisitedCorners = state
-        for corner in self.corners:
+        currPos, currVisitedCorners = state  # the state contains a pair (we returned the start node) and we unpack them
+        for corner in self.corners: #check if any corner is unvisited
             if currVisitedCorners[corner] == False:
                 return False
         
@@ -339,19 +340,19 @@ class CornersProblem(search.SearchProblem):
             #   hitsWall = self.walls[nextx][nexty]
 
             "*** YOUR CODE HERE ***"
-            currPos, currVisitedCorners = state
-            currX, currY = currPos
-            dx, dy = Actions().directionToVector(action)
-            nextX, nextY = int(currX + dx), int(currY + dy)
-            hitsWall = self.walls[nextX][nextY]
+            currPos, currVisitedCorners = state #unpack the state
+            currX, currY = currPos #get x and y
+            dx, dy = Actions().directionToVector(action) #we can get the change of y and x from this function
+            nextX, nextY = int(currX + dx), int(currY + dy) #returns float so we typecast to int
+            hitsWall = self.walls[nextX][nextY] #returns true if there is a wall
 
             if not hitsWall:
                 nextPos = (nextX, nextY)
-                nextVisitedCorners = deepcopy(currVisitedCorners)
-                if nextPos in self.corners:
+                nextVisitedCorners = deepcopy(currVisitedCorners) #just equal dile it passes by references and currVisitedCorners changes when nextVisitedCorners changes and we don't want that!
+                if nextPos in self.corners: #check if we have hit a wall now 
                     nextVisitedCorners[nextPos] = True
 
-                nextState = ((nextPos, nextVisitedCorners), action, 1)
+                nextState = ((nextPos, nextVisitedCorners), action, 1) #state returns triplets
                 successors.append(nextState)
 
 
