@@ -399,18 +399,12 @@ def cornersHeuristic(state, problem):
         if not currVisitedCorners[corner]:
             currNotVisitedCorners.append(corner)
 
-    if(len(currNotVisitedCorners) == 0 ):
+    if(len(currNotVisitedCorners) == 0):
         return 0
 
-    minDistance = float('inf')
-    for cornerCoordinates in currNotVisitedCorners:
-        distance = util.manhattanDistance(currPos, cornerCoordinates)
-        if(distance<minDistance):
-            minDistance = distance
+    maxDistance = max(util.manhattanDistance(currPos, cornerCoordinates) for cornerCoordinates in currNotVisitedCorners)
     
-    return minDistance
-
-
+    return maxDistance
 
 
 class AStarCornersAgent(SearchAgent):
@@ -505,23 +499,23 @@ def foodHeuristic(state, problem):
     """
     position, foodGrid = state
     "*** YOUR CODE HERE ***"
-    return 0
+    # return 0
     
-    # currNotEatenFood = []
-    # for i in len(foodGrid):
-    #     if not foodGrid[i]:
-    #         currNotEatenFood.append(foodGrid[i])
-
-    # if(len(currNotEatenFood) == 0 ):
-    #     return 0
-
-    # minDistance = float('inf')
-    # for foodCoordinates in currNotEatenFood:
-    #     distance = util.manhattanDistance(position, foodCoordinates)
-    #     if(distance<minDistance):
-    #         minDistance = distance
+    currFoodNotEaten = foodGrid.asList()
     
-    # return minDistance
+    if not currFoodNotEaten:
+        return 0
+
+    closestFood = None
+    minDistance = float('inf')
+
+    for foodPos in currFoodNotEaten:
+        distance = util.manhattanDistance(position, foodPos)
+        if distance < minDistance:
+            minDistance = distance
+            closestFood = foodPos
+    
+    return mazeDistance(closestFood, position, problem.startingGameState)
 
 
 class ClosestDotSearchAgent(SearchAgent):
