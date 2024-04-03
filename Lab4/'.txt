@@ -1,0 +1,6 @@
+2 
+we could not win because we could not see to endgame and only up to a certain depth
+
+
+5
+we do not care about action of other agents, just action of one agent - our pacman
