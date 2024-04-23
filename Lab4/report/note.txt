@@ -1,0 +1,70 @@
+1 
+pacman seems to be avoiding the ghosts too much to the point it avoids the food pellets as well, thus incurring high costs due to living penalty
+i did not calculate/consider the living penalty of pacman to the evaluation process 
+had to write code for giving reward for eating the dots naile pashe giye daray thake
+i placed equal importance to eating food and avoiding ghosts because otherwise, pacman either avoids the ghost which incurs living penalty or pacman is eaten by the ghost thus causing a lose.
+
+
+considering scared time:  
+Average Score: 1137.7
+Scores:        1217.0, 1164.0, 888.0, 1131.0, 950.0, 1190.0, 1208.0, 1168.0, 1233.0, 1228.0
+Win Rate:      10/10 (1.00)
+
+not considering scared time:
+Average Score: 1088.6
+Scores:        1217.0, 1160.0, 892.0, 1131.0, 748.0, 1225.0, 1156.0, 1174.0, 1024.0, 1159.0
+Win Rate:      10/10 (1.00)
+
+scared time, food count difference:
+pacman roams around and does not eat food 
+Average Score: 1137.7
+Scores:        1217.0, 1164.0, 888.0, 1131.0, 950.0, 1190.0, 1208.0, 1168.0, 1233.0, 1228.0
+Win Rate:      10/10 (1.00)
+
+removing penalty for stopping
+Average Score: 1076.3
+Scores:        1056.0, 1152.0, 1231.0, 1163.0, 817.0, 952.0, 1110.0, 956.0, 1105.0, 1221.0
+Win Rate:      10/10 (1.00) 
+
+considering the capsule positions (no change)
+Average Score: 1137.7
+Scores:        1217.0, 1164.0, 888.0, 1131.0, 950.0, 1190.0, 1208.0, 1168.0, 1233.0, 1228.0
+Win Rate:      10/10 (1.00)
+
+5
+i adjusted the weight of food count to be higher, otherwise Pacman keeps hovering over the food instead to maximize reward
+i couldnt include the living penalty because if subtracting from a 
+i removed ghost logic from here because otherwise, the pa
+pacman doesnt move until ghost comes very close 
+
+
+normal:
+Average Score: 1061.6
+Scores:        1077.0, 1219.0, 1217.0, 916.0, 978.0, 730.0, 1021.0, 1186.0, 979.0, 1293.0
+Win Rate:      10/10 (1.00)
+
+considering ghost distance with scared time:
+Average Score: 602.8
+Scores:        1098.0, 887.0, 1043.0, -748.0, -728.0, 1264.0, 790.0, 721.0, 741.0, 960.0
+Win Rate:      8/10 (0.80)
+
+considering ghost distance without scare time 
+pacman tries to avoid ghost more 
+Average Score: 804.4
+Scores:        1032.0, 1064.0, 598.0, 974.0, -206.0, 753.0, 919.0, 900.0, 1113.0, 897.0
+Win Rate:      9/10 (0.90)
+
+considering minimum capsule distance: 
+even when it approached -5000, pacman does not move 
+reduced incentive to move when food pellet number is low 
+
+adjusting weight of capsule count to 2 from 4 :
+pacman still keeps stopping at times
+Average Score: 936.3
+Scores:        1032.0, 1064.0, 598.0, 984.0, 1090.0, 875.0, 865.0, 892.0, 881.0, 1082.0
+Win Rate:      10/10 (1.00)
+
+without considering capsule count:
+Average Score: 738.4
+Scores:        1119.0, 703.0, 885.0, 840.0, 942.0, -732.0, 1016.0, 940.0, 947.0, 724.0
+Win Rate:      9/10 (0.90)
