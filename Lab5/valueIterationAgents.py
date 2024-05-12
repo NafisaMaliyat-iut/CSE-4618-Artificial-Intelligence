@@ -150,12 +150,23 @@ class AsynchronousValueIterationAgent(ValueIterationAgent):
         ValueIterationAgent.__init__(self, mdp, discount, iterations)
 
     def runValueIteration(self):
+    # Write value iteration code here
         "*** YOUR CODE HERE ***"
-        for state in self.mdp.getStates():
-            if(state.isTerminal):
-                return 
+        states = self.mdp.getStates()
+        num_states = len(states)
+        current_state_index = 0
+        
+        for _ in range(self.iterations):
+            state = states[current_state_index]
+            
             qValues = []
-            actions = self.mdp.getPossibleActions(states)
+            for action in self.mdp.getPossibleActions(state):
+                qValues.append(self.getQValue(state, action))
+            
+            if qValues:  
+                self.values[state] = max(qValues)
+            
+            current_state_index = (current_state_index + 1) % num_states
             
 
 
